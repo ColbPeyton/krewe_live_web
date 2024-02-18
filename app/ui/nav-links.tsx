@@ -66,8 +66,11 @@ export default function NavLinks() {
     <nav className="bg-neutral-900 transition-all">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
               <div className="flex flex-shrink-0 items-center">
+                <div className="hidden sm:block mr-4">
+                  <h1 className='text-sm text-xl font-medium text-gray-300'>Krewe Live</h1>
+                </div>
                 <img
                   className="h-8 w-auto"
                   src="https://tailwindui.com/img/logos/mark.svg?color=yellow&shade=500"
@@ -75,7 +78,7 @@ export default function NavLinks() {
                 />
               </div>
               <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-4 ml-2">
+                <div className="flex space-x-4">
                   {renderOptions()}
                 </div>
               </div>
