@@ -1,36 +1,105 @@
 'use client';
 
+import React, {useState} from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const links = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-  { name: 'Gallery', href: '/gallery' },
-];
+interface navigationInterface{
+  name: string,
+  href: string
+}
+
+const navigation: Array<navigationInterface> = [
+  { name: 'Home', href: '/'},
+  { name: 'About', href: '/about'},
+  { name: 'Contact', href: '/contact'},
+  { name: 'Gallery', href: '/gallery'},
+]
+
+function classNames(...classes: Array<string>) {
+  return classes.filter(Boolean).join(' ')
+}
+
+// bg-neutral-600
+// bg-neutral-900
+
+// bg-stone-50
+// bg-stone-300
+
+// bg-amber-300
+// bg-yellow-400	
+// bg-yellow-600
 
 export default function NavLinks() {
   const pathname = usePathname();
+  const [open, setOpen] = useState<boolean>(false)
+
+  const renderOptions = (isMobile: boolean = false) => {
+
+    const applyStyles = (item: navigationInterface) => {
+
+      return(
+        classNames( 
+          pathname === item.href ? 
+            'bg-yellow-600 text-white' : 
+            'text-gray-300 hover:bg-neutral-600 hover:text-white',
+          `${!isMobile ? 'rounded-md px-3 py-2 text-sm font-medium' : 'block rounded-md px-3 py-2 text-base font-medium text-center'}`
+        )
+      )
+    }
+
+    return navigation.map((item) => (
+      <Link
+        key={item.name}
+        href={item.href}
+        onClick={() => setOpen(false)}
+        className={applyStyles(item)}
+        aria-current={pathname === item.href ? 'page' : undefined}
+      >
+        {item.name}
+      </Link>
+    ))
+  }
+
   return (
-    <>
-      {links.map((link) => {
-        return (
-          <Link
-            key={link.name}
-            href={link.href}
-            className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
-              {
-                'bg-sky-100 text-blue-600': pathname === link.href,
-              },
-            )}
-          >
-            <p className="hidden md:block">{link.name}</p>
-          </Link>
-        );
-      })}
-    </>
-  );
+    <nav className="bg-neutral-900 transition-all">
+        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="relative flex h-16 items-center justify-between">
+            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex flex-shrink-0 items-center">
+                <img
+                  className="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=yellow&shade=500"
+                  alt="Your Company"
+                />
+              </div>
+              <div className="hidden sm:ml-6 sm:block">
+                <div className="flex space-x-4 ml-2">
+                  {renderOptions()}
+                </div>
+              </div>
+            </div>
+            <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
+              <button 
+                className="relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-neutral-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                onClick={() => setOpen(!open)}>
+                <span className="absolute -inset-0.5" />
+                <span className="sr-only">Open main menu</span>
+                {open ? (
+                  <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                ) : (
+                  <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+          <div className={`${!open ? 'hidden' : 'show'}`}>
+            <div className="space-y-1 px-2 pb-3 pt-2">
+              {renderOptions(true)}
+            </div>
+        </div>
+    </nav>
+  )
 }
