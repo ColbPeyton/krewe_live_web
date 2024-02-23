@@ -25,8 +25,8 @@ export default function RootLayout({
           <div className="w-full flex-none">
             <NavLinks />
           </div>
-          <div className="p-6 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-screen w-screen bg-stone-100">{children}</div>
-            <Footer />
+          <div className="p-6 mx-auto max-w-7xl px-2 min-h-screen sm:px-6 lg:px-8 w-screen bg-stone-100">{children}</div>
+          <Footer />
         </div>
       </body>
     </html>
