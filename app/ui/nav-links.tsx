@@ -49,21 +49,30 @@ export default function NavLinks() {
       )
     }
 
+    if(isMobile && !open){
+      return;
+    }
+
+    if(isMobile && open){
+      setTimeout(()=> {}, 1000);
+    }
+      
     return navigation.map((item) => (
-      <Link
-        key={item.name}
-        href={item.href}
-        onClick={() => setOpen(false)}
-        className={applyStyles(item)}
-        aria-current={pathname === item.href ? 'page' : undefined}
-      >
-        {item.name}
-      </Link>
-    ))
+        <Link
+          key={item.name}
+          href={item.href}
+          onClick={() => setOpen(false)}
+          className={applyStyles(item)}
+          aria-current={pathname === item.href ? 'page' : undefined}
+        >
+          {item.name}
+        </Link>
+      ))
+
   }
 
   return (
-    <nav className="bg-neutral-900 transition-all">
+    <nav className="bg-neutral-900 border-b-8 border-b-yellow-500 no-underline z-50 fixed w-full sm:static">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
@@ -74,7 +83,7 @@ export default function NavLinks() {
                 <img
                   className="h-8 w-auto"
                   src="https://tailwindui.com/img/logos/mark.svg?color=yellow&shade=500"
-                  alt="Your Company"
+                  alt="Krewe Live"
                 />
               </div>
               <div className="hidden sm:ml-6 sm:block">
@@ -98,7 +107,7 @@ export default function NavLinks() {
             </div>
           </div>
         </div>
-          <div className={`${!open ? 'hidden' : 'show'}`}>
+          <div className={`transition-all ease-linear bg-neutral-800 ${!open ? 'h-0' : 'h-48'}`}>
             <div className="space-y-1 px-2 pb-3 pt-2">
               {renderOptions(true)}
             </div>

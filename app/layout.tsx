@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import NavLinks from '@/app/ui/nav-links';
 import Footer from "@/app/ui/footer";
 
-import "./globals.css";
+import '@/app/globals.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="flex h-screen flex-col">
-          <div className="w-full flex-none">
+      <body className={`${inter.className}`}>
+        <div className="flex h-screen flex-col no-underline">
+          <div className="w-full flex-none no-underline">
             <NavLinks />
           </div>
-          <div className="p-6 mx-auto max-w-7xl px-2 min-h-screen sm:px-6 lg:px-8 w-screen bg-stone-100">{children}</div>
+          <div className="mt-16 pt-2 mx-auto mb-auto max-w-7xl min-h-fit sm:mt-0 sm:pt-0 sm:px-6 lg:px-8 w-full bg-stone-200">
+            <>
+              {children}
+            </>
+          </div>
           <Footer />
         </div>
       </body>
