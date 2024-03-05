@@ -8,27 +8,29 @@ interface Props{
 }
 
 
-const PageTitle: React.FC<Props> = ({title, height='lg', colorThemeFrom='yellow-500', colorThemeTo='amber-600', colorDirection='b'}) => {
+const PageTitle: React.FC<Props> = ({title, height='lg', colorThemeFrom='from-yellow-500', colorThemeTo='to-amber-600', colorDirection='b'}) => {
     
     let tHeight = '';
-    const to = colorThemeTo ? `to-${colorThemeTo}` : ''
+    const to = colorThemeTo ? colorThemeTo : '';
+    const direction = colorDirection === 'b' ? 'bg-gradient-to-b' : 'bg-gradient-to-r';
 
     switch(height){
         case 'sm':
-            tHeight = '16';
+            tHeight = 'h-16';
             break;
         case 'md':
-            tHeight = '28';
+            tHeight = 'h-28';
             break;
         default:
-            tHeight = '48';
+            tHeight = 'h-48';
             break;
     }
 
 
+
     return(
-    <div className={`h-${tHeight} flex justify-center items-center text-center bg-gradient-to-${colorDirection} from-${colorThemeFrom} ${to}`}>
-        <h1 className='text-2xl mx-2 text-white capitalize font-light'>{title}</h1>
+    <div className={`${tHeight} flex justify-center items-center text-center ${direction} ${colorThemeFrom} ${to}`}>
+        <h1 className='text-3xl mx-2 text-white capitalize font-light'>{title}</h1>
     </div>
     )
 }

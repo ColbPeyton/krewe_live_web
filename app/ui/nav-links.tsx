@@ -14,7 +14,7 @@ const navigation: Array<navigationInterface> = [
   { name: 'Home', href: '/'},
   { name: 'About', href: '/about'},
   { name: 'Contact', href: '/contact'},
-  { name: 'Gallery', href: '/gallery'},
+  { name: 'Portfolio', href: '/portfolio'},
 ]
 
 function classNames(...classes: Array<string>) {
