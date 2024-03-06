@@ -28,11 +28,11 @@ const images = [
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="mt-2">
       <div className="w-full flex items-center justify-center">
-        <div className="text-center my-4 shadow-2xl w-96 rounded-md p-3 bg-neutral-900">
-          <h1 className="font-light text-white text-3xl">Welcome To Krewe Live</h1>
-            <h4 className="font-medium italic text-yellow-500">"It all begins right here"</h4>
+        <div className="text-center my-4 shadow-lg w-96 rounded-md p-3 border-solid rounded bg-gradient-to-b from-neutral-600 to-stone-200 text-white">
+          <h1 className="font-medium text-3xl">Welcome To Krewe Live</h1>
+            <h4 className="font-normal italic text-yellow-500 text-xl	">"It all begins right here"</h4>
         </div>
       </div>
       <div className="flex items-center justify-center flex-col text-center mb-3">
